@@ -25,6 +25,7 @@ class Check extends CI_Controller {
         $id = $this->uri->segment(3);
         $slink = $this->db->query("select slink from items where id = ".$id)->row()->slink;
         $stock = '';
+        $charset = 'utf-8';
         if(preg_match('/etsy/', $slink)){            
             phpQuery::newDocumentFile($slink);
             $stock .= pq("#listing-page-cart")->html();
@@ -32,19 +33,16 @@ class Check extends CI_Controller {
             phpQuery::newDocumentFile($slink);
             $stock .= pq("#content-sub .detail-header_sidemenu")->html();
         }elseif(preg_match('/rakuten/', $slink)){
-            // phpQuery::$defaultCharset="ISO-8859-1";        
+            phpQuery::$defaultCharset = 'euc-jp';
             phpQuery::newDocumentFile($slink);
             $stock .= pq("#rakutenLimitedId_cart")->html() . pq("#rakutenLimitedId_aroundCart")->html();
-            $stock = mb_convert_encoding($stock,'ISO-8859-1','utf-8');
+            return $this->load->view('show_jp',['stock'=>$stock]);
         }
         return $this->load->view('show',['stock'=>$stock]);
     }
 
-    function test(){
-        $url = "http://item.rakuten.co.jp/monomode/mn-aii-01?s-id=top_normal_browsehist&xuseflg_ichiba01=10107962";
-        $doc = phpQuery::newDocumentFile($url);
-        echo pq("#rakutenLimitedId_aroundCart");
-
+    function insertItem(){
+        $this->load->view('check_insert_form');
     }
 
 }
