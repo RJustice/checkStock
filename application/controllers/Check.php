@@ -14,7 +14,7 @@ class Check extends CI_Controller {
             $items = [];
         }
         if(count($items)){
-            redirect(site_url('check/checkStock/'.$items[0]['id']));
+            redirect(site_url('check/showStock/'.$items[0]['id']));
         }else{
             return $this->load->view('check_form',['items'=>$items]);
         }
