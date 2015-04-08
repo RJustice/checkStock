@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-require_once('../libraries/phpQuery/phpQuery.php');
+require_once('/home/vcap/app/application/libraries/phpQuery/phpQuery.php');
 
 class Check extends CI_Controller {
 
