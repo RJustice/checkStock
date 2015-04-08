@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-require_once('\application\libraries\phpQuery\phpQuery.php');
+require_once(BASEPATH.'/application/libraries/phpQuery/phpQuery.php');
 
 class Check extends CI_Controller {
 
@@ -11,7 +11,26 @@ class Check extends CI_Controller {
         }else{
             $items = [];
         }
-        $this->load->view('check_form',['items'=>$items]);
+        if(count($items)){
+            return $this->redirect(site_url('check/checkStock/'.$items[0]['id']));
+        }else{
+            return $this->load->view('check_form',['items'=>$items]);
+        }
+    }
+
+    function showStock(){
+        $id = $this->uri->segment(3);
+        $slink = $this->db->query("select slink from items where id = ".$id)->row()->slink;
+        phpQuery::newDocumentFile($slink);
+        $stock = '';
+        if(preg_match('/etsy/', $slink)){
+            $stock .= pq("#listing-page-cart");
+        }elseif(preg_match('/creema/', $slink)){
+            $stock .= pq("#content-sub .detail-header_sidemenu");
+        }elseif(preg_match('/rakuten/', $slink)){
+            $stock .= pq("#rakutenLimitedId_cart") . pq("#rakutenLimitedId_aroundCart");
+        }
+        return $this->load->view('show',['stock'=>$stock]);
     }
 
     function test(){
