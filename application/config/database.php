@@ -59,7 +59,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | the query builder class.
 */
 
-$active_group = 'default';
+$active_group = 'coding';
 $query_builder = TRUE;
 
 $db['default'] = array(
@@ -68,6 +68,27 @@ $db['default'] = array(
 	'username' => 'root',
 	'password' => '',
 	'database' => 'check',
+	'dbdriver' => 'mysqli',
+	'dbprefix' => '',
+	'pconnect' => FALSE,
+	'db_debug' => TRUE,
+	'cache_on' => FALSE,
+	'cachedir' => '',
+	'char_set' => 'utf8',
+	'dbcollat' => 'utf8_general_ci',
+	'swap_pre' => '',
+	'encrypt' => FALSE,
+	'compress' => FALSE,
+	'stricton' => FALSE,
+	'failover' => array(),
+	'save_queries' => TRUE
+);
+$db['coding'] = array(
+	'dsn'	=> '',
+	'hostname' => '10.9.1.188',
+	'username' => 'N30OBwNkTYYJTfEW',
+	'password' => 'Mnp8yHHuKaA1K7O7',
+	'database' => 'cf_0f40d00c_c73b_46fa_96d1_caeae5fd21be',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
