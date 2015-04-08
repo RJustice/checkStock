@@ -24,14 +24,18 @@ class Check extends CI_Controller {
     function showStock(){
         $id = $this->uri->segment(3);
         $slink = $this->db->query("select slink from items where id = ".$id)->row()->slink;
-        phpQuery::newDocumentFile($slink);
         $stock = '';
-        if(preg_match('/etsy/', $slink)){
-            $stock .= pq("#listing-page-cart");
+        if(preg_match('/etsy/', $slink)){            
+            phpQuery::newDocumentFile($slink);
+            $stock .= pq("#listing-page-cart")->html();
         }elseif(preg_match('/creema/', $slink)){
-            $stock .= pq("#content-sub .detail-header_sidemenu");
+            phpQuery::newDocumentFile($slink);
+            $stock .= pq("#content-sub .detail-header_sidemenu")->html();
         }elseif(preg_match('/rakuten/', $slink)){
-            $stock .= pq("#rakutenLimitedId_cart") . pq("#rakutenLimitedId_aroundCart");
+            // phpQuery::$defaultCharset="ISO-8859-1";        
+            phpQuery::newDocumentFile($slink);
+            $stock .= pq("#rakutenLimitedId_cart")->html() . pq("#rakutenLimitedId_aroundCart")->html();
+            $stock = mb_convert_encoding($stock,'ISO-8859-1','utf-8');
         }
         return $this->load->view('show',['stock'=>$stock]);
     }
