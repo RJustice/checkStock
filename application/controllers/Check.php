@@ -15,9 +15,10 @@ class Check extends CI_Controller {
     }
 
     function test(){
-        $url = "http://www.baidu.com";
+        $url = "http://item.rakuten.co.jp/monomode/mn-aii-01?s-id=top_normal_browsehist&xuseflg_ichiba01=10107962";
         $doc = phpQuery::newDocumentFile($url);
-        echo $doc;
+        echo pq("#rakutenLimitedId_aroundCart");
+
     }
 
 }
