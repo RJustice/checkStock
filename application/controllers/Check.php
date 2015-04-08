@@ -9,11 +9,12 @@ class Check extends CI_Controller {
     {   
         $tid = $this->input->post('tid',true);
         if($tid){
-            $items = $this->db->query("select * from items where tid like '%{$tid}%' or tlink like '%{$tid}%'")->result_array();
+            $items = $this->db->query("select * from items where tid like '%{$tid}%' or tlink like '%{$tid}%' or sn like '%{$tid}%'")->result_array();
+            // echo $this->db->last_query();exit;
         }else{
             $items = [];
         }
-        if(count($items)){
+        if(count($items) == 1){
             redirect(site_url('check/showStock/'.$items[0]['id']));
         }else{
             return $this->load->view('check_form',['items'=>$items]);
