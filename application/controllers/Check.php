@@ -39,7 +39,7 @@ class Check extends CI_Controller {
             $stock .= pq("#rakutenLimitedId_cart")->html() . pq("#rakutenLimitedId_aroundCart")->html();
             // return $this->load->view('show_jp',['stock'=>$stock]);
         }
-        return $this->load->view('show',['stock'=>$stock]);
+        return $this->load->view('show',['stock'=>$stock,'slink'=>$slink]);
     }
 
     function insertItem(){
