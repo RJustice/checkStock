@@ -37,7 +37,7 @@ class Check extends CI_Controller {
             phpQuery::$defaultCharset = 'euc-jp';
             phpQuery::newDocumentFile($slink);
             $stock .= pq("#rakutenLimitedId_cart")->html() . pq("#rakutenLimitedId_aroundCart")->html();
-            return $this->load->view('show_jp',['stock'=>$stock]);
+            // return $this->load->view('show_jp',['stock'=>$stock]);
         }
         return $this->load->view('show',['stock'=>$stock]);
     }
