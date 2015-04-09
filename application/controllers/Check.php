@@ -33,6 +33,7 @@ class Check extends CI_Controller {
             phpQuery::newDocumentFile($slink);
             $stock .= pq("#content-sub .detail-header_sidemenu")->html();
         }elseif(preg_match('/rakuten/', $slink)){
+            
             phpQuery::$defaultCharset = 'euc-jp';
             phpQuery::newDocumentFile($slink);
             $stock .= pq("#rakutenLimitedId_cart")->html() . pq("#rakutenLimitedId_aroundCart")->html();
@@ -43,6 +44,35 @@ class Check extends CI_Controller {
 
     function insertItem(){
         $this->load->view('check_insert_form');
+    }
+
+    function updateTxt(){
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules(array(
+            array(
+                'field' => 'mfile',
+                'label' =>'',
+                'rules' => ''
+            )
+        ));
+        if($this->form_validation->run() == FALSE){
+            return $this->load->view('update_txt');
+        }else{
+            $file = $_FILES['mfile'];
+            // var_dump($file);
+            $myfile = fopen($file['tmp_name'], "r") or die("Unable to open file!");
+            $this->db->query("delete from items");
+            while(!feof($myfile)) {
+                 $line = fgets($myfile);
+                 $fields = explode(',', $line);
+                 $sn = $fields[1];
+                 $slink = $fields[2];
+                 $tlink = empty($fields[3])? $tlink : $fields[3];
+                 var_dump([$sn,$slink,$tlink]);
+                 $this->db->insert('items',['sn'=>$sn,'slink'=>$slink,'tlink'=>$tlink]);
+            }
+            fclose($myfile);
+        }
     }
 
 }

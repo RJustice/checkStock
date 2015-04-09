@@ -14,7 +14,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 <div class="container">
     <div class="row">
         <div class="col-md-12">
-            <a href="<?php echo site_url('check');?>" class="btn btn-block btn-info">»Øµ½Ê×Ò³</a>
+            <a href="<?php echo site_url('check');?>" class="btn btn-block btn-info">??????</a>
         </div>
     </div>
     <div class="row">
