@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="col-md-12">
             <?php foreach($items as $item):?>
                 <p>
-                    <a href="<?php echo site_url('check/showStock/'.$item['id']);?>"><?php echo $item['tid']; ?> -- <?php echo $item['sn']; ?></a>
+                    <a href="<?php echo site_url('check/showStock/'.$item['id']);?>"><?php echo $item['sn']; ?> --> <?php echo $item['tlink']; ?></a><a href="<?php echo site_url('check/showStock/'.$item['id']); ?>" class="btn btn-info"> 查看 </a>
                 </p>
             <?php endforeach;?>
         </div>
