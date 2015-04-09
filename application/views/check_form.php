@@ -24,10 +24,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <div class="col-md-12">
             <?php foreach($items as $item):?>
                 <div class="row" style="margin:5px 0;">
-                    <div class="col-md-4">
+                    <div class="col-md-2">
                         <p><a href="<?php echo site_url('check/showStock/'.$item['id']);?>"><?php echo $item['sn']; ?></a></p>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-5">
                         <p><a href="<?php echo $item['tlink']; ?>"><?php echo $item['tlink']; ?></a></p>
                     </div>
                     <div class="col-md-3">
