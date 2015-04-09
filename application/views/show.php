@@ -18,7 +18,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
     <div class="row">
         <div class="col-md-12">
-            <a href="<?php echo $slink;?>" class="btn btn-block btn-info">去购买</a>
+            <a href="<?php echo $slink;?>" class="btn btn-block btn-primary">去购买</a>
         </div>
     </div>
     <div class="row">
