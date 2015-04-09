@@ -23,11 +23,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
         <div class="col-md-12">
             <?php foreach($items as $item):?>
-                <div class="col-md-10">
-                    <p><a href="<?php echo site_url('check/showStock/'.$item['id']);?>"><?php echo $item['sn']; ?> --> <?php echo $item['tlink']; ?></a></p>
-                </div>
-                <div class="col-md-2">
-                    <a href="<?php echo site_url('check/showStock/'.$item['id']); ?>" class="btn btn-info"> 查看 </a>
+                <div class="row" style="margin:5px 0;">
+                    <div class="col-md-4">
+                        <p><a href="<?php echo site_url('check/showStock/'.$item['id']);?>"><?php echo $item['sn']; ?></a></p>
+                    </div>
+                    <div class="col-md-4">
+                        <p><a href="<?php echo $item['tlink']; ?>"><?php echo $item['tlink']; ?></a></p>
+                    </div>
+                    <div class="col-md-3">
+                        <p><a href="<?php echo $item['slink']; ?>" class="btn btn-primary">查看源商品</a></p>
+                    </div>
+                    <div class="col-md-2">
+                        <a href="<?php echo site_url('check/showStock/'.$item['id']); ?>" class="btn btn-info"> 查看库存 </a>
+                    </div>
                 </div>
             <?php endforeach;?>
         </div>
