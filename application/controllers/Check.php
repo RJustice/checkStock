@@ -39,11 +39,15 @@ class Check extends CI_Controller {
             // return $this->load->view('show_jp',['stock'=>$stock]);
         }elseif(preg_match('/global/', $slink)){
             phpQuery::newDocumentFile($slink);
-            $stock .= pq(".b-product-main .b-text")->html();
+            $stock .= pq(".b-product-main")->html();
         }elseif(preg_match('/knap/', $slink)){
             phpQuery::newDocumentFile($slink);
             $stock .= pq("#pagemain")->html();
+        }elseif(preg_match('/a-fe/', $slink)){
+            phpQuery::newDocumentFile($slink);
+            $stock .= pq("#main")->html();
         }
+        phpQuery::$documents = array();
         return $this->load->view('show',['stock'=>$stock,'slink'=>$slink]);
     }
 
