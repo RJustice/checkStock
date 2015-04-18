@@ -39,7 +39,7 @@ class Check extends CI_Controller {
             // return $this->load->view('show_jp',['stock'=>$stock]);
         }elseif(preg_match('/global/', $slink)){
             phpQuery::newDocumentFile($slink);
-            $stock .= pq(".b-product-main")->html();
+            $stock .= pq(".b-product-main .b-text")->html();
         }elseif(preg_match('/knap/', $slink)){
             phpQuery::newDocumentFile($slink);
             $stock .= pq("#pagemain")->html();
