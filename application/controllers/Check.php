@@ -26,11 +26,11 @@ class Check extends CI_Controller {
         $slink = $this->db->query("select slink from items where id = ".$id)->row()->slink;
         $stock = '';
         $charset = 'utf-8';
-        var_dump($slink);
-        var_dump(preg_match('/global/', $slink));
-        phpQuery::newDocumentFile($slink);
-        $stock .= pq(".b-product-main .b-text")->html();
-        var_dump($stock);exit;
+        // var_dump($slink);
+        // var_dump(preg_match('/global/', $slink));
+        // phpQuery::newDocumentFile($slink);
+        // $stock .= pq(".b-product-main .b-text")->html();
+        // var_dump($stock);exit;
         if(preg_match('/etsy/', $slink)){            
             phpQuery::newDocumentFile($slink);
             $stock .= pq("#listing-page-cart")->html();
