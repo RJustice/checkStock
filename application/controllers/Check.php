@@ -37,15 +37,13 @@ class Check extends CI_Controller {
         }elseif(preg_match('/creema/', $slink)){
             phpQuery::newDocumentFile($slink);
             $stock .= pq("#content-sub .detail-header_sidemenu")->html();
+        }elseif(preg_match('/global/', $slink)){
+            phpQuery::newDocumentFile($slink);
+            $stock .= pq(".b-product-main .b-text")->html();
         }elseif(preg_match('/rakuten/', $slink)){            
             phpQuery::$defaultCharset = 'euc-jp';
             phpQuery::newDocumentFile($slink);
             $stock .= pq("#rakutenLimitedId_cart")->html() . pq("#rakutenLimitedId_aroundCart")->html();
-            // return $this->load->view('show_jp',['stock'=>$stock]);
-        }elseif(preg_match('/global/', $slink)){
-            phpQuery::newDocumentFile($slink);
-            $stock .= pq(".b-product-main .b-text")->html();
-            var_dump($stock);exit;
         }elseif(preg_match('/knap/', $slink)){
             phpQuery::newDocumentFile($slink);
             $stock .= pq("#pagemain")->html();
